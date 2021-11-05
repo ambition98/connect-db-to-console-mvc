@@ -55,6 +55,7 @@ public class MallUserDTO {
 	}
 
 	public static class Builder {
+		private int no;
 		private String userId;
 		private String userPw;
 		private String ph;
@@ -65,7 +66,12 @@ public class MallUserDTO {
 		public Builder(String userId) {
 			this.userId = userId;
 		}
-
+		
+		public Builder no(int no) {
+			this.no = no;
+			return this;
+		}
+		
 		public Builder userPw(String userPw) {
 			this.userPw = userPw;
 			return this;

@@ -1,19 +1,35 @@
-package mall.controller;
+package mall.controller.menu;
 
+import mall.constant.MenuList;
 import mall.constant.SystemMsg;
+import mall.controller.ConnectedUser;
+import mall.controller.Position;
 import mall.model.MallUserDAO;
 import mall.model.MallUserDTO;
 import mall.view.input_view.InputAccountView;
 import mall.view.input_view.InputMenuView;
 import mall.view.output_view.OutputView;
 
-public class Main {
-	public void mainMenu() {
-		String menuNumber = InputMenuView.getSelectMenuNumber(Position.currentMenu);
-		Position.moveFromMain(menuNumber);
+public class MainMenu {
+	/*
+ 		[ Need Refactoring ]
+	 */
+	public static void execute() {
+		String selectedSubMenu = InputMenuView.selectSubMenu();
+		
+		switch(selectedSubMenu) {
+		case "1":
+			signIn();
+			break;
+		case "2":
+			signUp();
+			break;
+		case "3":
+			System.exit(0);
+		}
 	}
 	
-	public MallUserDTO signIn() {
+	private static void signIn() {
 		MallUserDTO dto = null;
 		
 		while(true) {
@@ -23,13 +39,13 @@ public class Main {
 			
 			if(id.equals("exit")) {
 				Position.moveToPrevious();
-				return null;
+				return;
 			}
 			
 			OutputView.printMessage(SystemMsg.INPUT_PASSWORD.getMsg());
 			String pw = InputAccountView.inputStringLine();
 			
-			dto = MallUserDAO.selectByUserId(id);
+			dto = MallUserDAO.selectforSignin(id, pw);
 			if(dto == null) {
 				OutputView.printMessage(SystemMsg.WRONG_IDPW.getMsg());
 				continue;
@@ -37,11 +53,12 @@ public class Main {
 			break;
 		}
 		
+		ConnectedUser.currentUser = dto;
 		OutputView.printMessage(SystemMsg.SUCCEED_LOGIN.getMsg());
-		return dto;
+		Position.setCurrentMenu(MenuList.CATEGORY);
 	}
 	
-	public void signUp() {
+	private static void signUp() {
 		String id = "";
 		while(true) {
 			OutputView.printMessage(SystemMsg.EXIT_MESSAGE.getMsg());

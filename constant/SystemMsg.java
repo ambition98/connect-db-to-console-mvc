@@ -1,6 +1,9 @@
 package mall.constant;
 
 public enum SystemMsg {
+	/*
+	  메세지 용도에 따라 클래스를 분리해야하나...?
+	 */
 	//Nomal Message
 	EXIT_MESSAGE("[\"exit\" 입력하여 뒤로가기]"),
 	COMPLETE_SIGNUP("회원가입이 완료되었습니다."),

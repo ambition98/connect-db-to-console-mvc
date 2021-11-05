@@ -32,10 +32,6 @@ public class OutputView {
 		switch(menu) {
 		case MAIN:
 			return 20;
-		case SIGNIN:
-			return 20;
-		case SIGNUP:
-			return 20;
 		case CATEGORY:
 			return 20;
 		case PRODUCT:

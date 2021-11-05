@@ -4,25 +4,27 @@ import java.util.Scanner;
 
 import mall.constant.MenuList;
 import mall.constant.SystemMsg;
+import mall.controller.Position;
 import mall.view.output_view.OutputView;
 
 
 public class InputMenuView {
 	private static final Scanner sc = new Scanner(System.in);
 	
-	public static String getSelectMenuNumber(MenuList menu) {
+	public static String selectSubMenu() {
+		String input = "";
 		try {
-			OutputView.printMenu(MenuList.MAIN.getListToStream(), 20);
+			OutputView.printMenu(Position.getCurrentMenu().getListToStream(), 20);
 			OutputView.printInputConsole();
 			
-			String input = sc.nextLine().trim();
-			checkValidMenuNumber(menu, input);
+			input = sc.nextLine().trim();
+			checkValidMenuNumber(Position.getCurrentMenu(), input);
 			
 			return input;
 		} catch(IllegalArgumentException e) {
 //			e.printStackTrace();
 			OutputView.printMessage(SystemMsg.ILLEGAL_INPUT.getMsg());
-			return getSelectMenuNumber(menu);
+			return input;
 		}
 	}
 	

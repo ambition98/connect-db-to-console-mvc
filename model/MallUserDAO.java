@@ -52,8 +52,8 @@ public class MallUserDAO {
 			pstmt.setString(1, userId);
 			
 			res = pstmt.executeQuery();
+			
 			while(res.next()) {
-				System.out.println("has next");
 				dto = new MallUserDTO.Builder(userId)
 						.ph(res.getString("ph"))
 						.address(res.getString("address"))
@@ -73,7 +73,45 @@ public class MallUserDAO {
 				e.printStackTrace();
 			}
 		}
-		System.exit(0);
+		return dto;
+	}
+	
+	public static MallUserDTO selectforSignin(String userId, String userPw) {
+		MallUserDTO dto = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			String sql = "select * from malluser "
+						+ "where userid = ? and userpw = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPw);
+			
+			res = pstmt.executeQuery();
+			
+			while(res.next()) {
+				dto = new MallUserDTO.Builder(userId)
+						.no(res.getInt("no"))
+						.userPw(res.getString("userpw"))
+						.ph(res.getString("ph"))
+						.address(res.getString("address"))
+						.isManager(res.getString("is_manager"))
+						.suspensionDate(res.getTimestamp("suspension_date"))
+						.build();
+				System.out.println(dto.toString());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+				if(res != null) res.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return dto;
 	}
 }
