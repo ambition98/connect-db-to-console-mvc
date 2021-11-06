@@ -15,7 +15,6 @@ public class InputMenuView {
 		String input = "";
 		try {
 			OutputView.printMenu(Position.getCurrentMenu().getListToStream(), 20);
-			OutputView.printInputConsole();
 			
 			input = sc.nextLine().trim();
 			checkValidMenuNumber(Position.getCurrentMenu(), input);

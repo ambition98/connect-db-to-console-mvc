@@ -12,7 +12,7 @@ public class CategoryDAO {
 	static ResultSet res = null;
 	
 	public static ArrayList<CategoryDTO> selectAllElement() {
-		ArrayList<CategoryDTO> dtoList = null;
+		ArrayList<CategoryDTO> dtoList = new ArrayList<CategoryDTO>();
 
 		try {
 			conn = DBUtil.getConnection();

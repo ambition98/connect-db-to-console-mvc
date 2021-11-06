@@ -11,9 +11,6 @@ import mall.view.input_view.InputMenuView;
 import mall.view.output_view.OutputView;
 
 public class MainMenu {
-	/*
- 		[ Need Refactoring ]
-	 */
 	public static void execute() {
 		String selectedSubMenu = InputMenuView.selectSubMenu();
 		

@@ -12,6 +12,7 @@ public class OutputView {
 		printOutline(outlineLength);
 		stream.forEach(menu -> System.out.println(INDENT + menu));
 		printOutline(outlineLength);
+		printInputConsole();
 	}
 	
 	public static void printMessage(String message) {

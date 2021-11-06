@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import mall.model.CategoryDAO;
+import mall.model.CategoryDTO;
+
 public enum MenuList {
 	/*
 	 	[ Need Refactoring ]
-	 	* 메뉴의 선택지는 MenuList에서 분리하여 다른 Enum 생성
-	 		e.g. signin, signup
-	 	* 변경하면 Position을 변경하는 과정이 간편해짐
-	 	* 단일 책임 원칙
+	 	
 	 */
 	MAIN(Arrays.asList("[1] 로그인"
 				     , "[2] 회원가입"
@@ -20,15 +20,15 @@ public enum MenuList {
 	PRODUCT(null),
 	PRODUCT_ACT(null);
 	
-	private final List<String> list;
-	
-	private MenuList(List<String> list) { 
-		this.list = list;
+	static {
+		CATEGORY.list = makeCategoryList();
 	}
 	
-	public Stream<String> getListToStream() {
-		return list.stream(); 
-	}
+	private List<String> list;
+	
+	private MenuList(List<String> list) { this.list = list; }
+	
+	public Stream<String> getListToStream() { return list.stream();	}
 	
 	public List<String> getMenuNumber() {
 		List<String> numberList = new ArrayList<String>();
@@ -37,5 +37,16 @@ public enum MenuList {
 			numberList.add(menu.substring(1, 2));
 		
 		return numberList;
+	}
+	
+	private static List<String> makeCategoryList() {
+		ArrayList<CategoryDTO> dtoList = CategoryDAO.selectAllElement();
+		List<String> categoryList = new ArrayList<String>();
+		int index = 0;
+		for(CategoryDTO dto : dtoList) {
+			categoryList.add("[" + (++index) + "] " + dto.getName());
+		}
+		
+		return categoryList;
 	}
 }
