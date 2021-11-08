@@ -3,11 +3,14 @@ package mall.controller;
 import mall.constant.MenuList;
 import mall.controller.menu.CategoryMenu;
 import mall.controller.menu.MainMenu;
+import mall.controller.menu.Product;
+import mall.controller.menu.ProductMenu;
+import mall.model.ProductDTO;
 
 public class Application {
 
 	public static void main(String[] args) {
-		String categorySubMenu = "";
+		String category = "";
 		
 		System.out.println(MenuList.MAIN.ordinal());
 		while(true) {
@@ -23,9 +26,10 @@ public class Application {
 				MainMenu.execute();
 				break;
 			case CATEGORY: //미구현
-				categorySubMenu = CategoryMenu.execute();
+				category = CategoryMenu.execute();
 				break;
 			case PRODUCT: //미구현
+				ProductMenu.execute(category);
 				break;
 			case PRODUCT_ACT: //미구현
 				break;
