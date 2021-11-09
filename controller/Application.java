@@ -3,14 +3,13 @@ package mall.controller;
 import mall.constant.MenuList;
 import mall.controller.menu.CategoryMenu;
 import mall.controller.menu.MainMenu;
-import mall.controller.menu.Product;
 import mall.controller.menu.ProductMenu;
-import mall.model.ProductDTO;
+import mall.model.CategoryDTO;
 
 public class Application {
 
 	public static void main(String[] args) {
-		String category = "";
+		CategoryDTO category = null;
 		
 		System.out.println(MenuList.MAIN.ordinal());
 		while(true) {
@@ -25,7 +24,7 @@ public class Application {
 			case MAIN:
 				MainMenu.execute();
 				break;
-			case CATEGORY: //미구현
+			case CATEGORY:
 				category = CategoryMenu.execute();
 				break;
 			case PRODUCT: //미구현

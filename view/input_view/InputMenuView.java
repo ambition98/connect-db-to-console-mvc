@@ -1,45 +1,51 @@
 package mall.view.input_view;
 
+import java.util.List;
 import java.util.Scanner;
 
-import mall.constant.MenuList;
 import mall.constant.SystemMsg;
-import mall.controller.Position;
 import mall.view.output_view.OutputView;
 
 
 public class InputMenuView {
 	private static final Scanner sc = new Scanner(System.in);
 	
-	public static String selectSubMenu() {
+	public static <T> String selectSubMenu(List<T> dtoList) {
 		String input = "";
 		try {
-			OutputView.printMenu(Position.getCurrentMenu().getListToStream(), 20);
+			OutputView.printMenu(dtoList);
 			
 			input = sc.nextLine().trim();
-			checkValidMenuNumber(Position.getCurrentMenu(), input);
+			checkValidMenuNumber(dtoList, input);
 			
 			return input;
 		} catch(IllegalArgumentException e) {
 //			e.printStackTrace();
-			OutputView.printMessage(SystemMsg.ILLEGAL_INPUT.getMsg());
-			return input;
+//			OutputView.printMessage(SystemMsg.ILLEGAL_INPUT.getMsg());
+			OutputView.printMessage(e.getMessage());
+			return selectSubMenu(dtoList);
 		}
 	}
 	
-	private static void checkValidMenuNumber(MenuList menu, String input) {
-		boolean isValidInput = false;
-		
-		for(String menuNumber : menu.getMenuNumber()) {
-//			System.out.println(menuNumber);
-			if(menuNumber.equals(input)) {
-				isValidInput = true;
-				break;
-			}
-		}
-		
-		if(!isValidInput)
+	private static <T> void checkValidMenuNumber(List<T> dtoList, String input) 
+												throws IllegalArgumentException {
+		if(!isNumber(input))
 			throw new IllegalArgumentException(SystemMsg.ILLEGAL_INPUT.getMsg());
-	}	
+		
+		
+		if(Integer.parseInt(input) > dtoList.size() 
+				&& Integer.parseInt(input) <= 0) {
+			throw new IllegalArgumentException(SystemMsg.ILLEGAL_INPUT.getMsg());
+		}
+	}
+	
+	private static boolean isNumber(String input) {
+		try {
+			Integer.parseInt(input);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
 }
 

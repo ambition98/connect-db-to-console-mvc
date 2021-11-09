@@ -1,5 +1,8 @@
 package mall.controller.menu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mall.constant.MenuList;
 import mall.constant.SystemMsg;
 import mall.controller.ConnectedUser;
@@ -11,8 +14,16 @@ import mall.view.input_view.InputMenuView;
 import mall.view.output_view.OutputView;
 
 public class MainMenu {
+	public static List<String> mainMenuList = new ArrayList<String>(); 
+	
+	static {
+		mainMenuList.add("SignIn");
+		mainMenuList.add("SignUp");
+		mainMenuList.add("Exit");
+	}
+	
 	public static void execute() {
-		String selectedSubMenu = InputMenuView.selectSubMenu();
+		String selectedSubMenu = InputMenuView.selectSubMenu(mainMenuList);
 		
 		switch(selectedSubMenu) {
 		case "1":
@@ -22,6 +33,7 @@ public class MainMenu {
 			signUp();
 			break;
 		case "3":
+			OutputView.printMessage(SystemMsg.EXIT_MESSAGE.getMsg());
 			System.exit(0);
 		}
 	}
@@ -30,7 +42,7 @@ public class MainMenu {
 		MallUserDTO dto = null;
 		
 		while(true) {
-			OutputView.printMessage(SystemMsg.EXIT_MESSAGE.getMsg());
+			OutputView.printMessage(SystemMsg.GO_TO_PREV_MESSAGE.getMsg());
 			OutputView.printMessage(SystemMsg.INPUT_ID.getMsg());
 			String id = InputAccountView.inputStringLine();
 			
@@ -58,7 +70,7 @@ public class MainMenu {
 	private static void signUp() {
 		String id = "";
 		while(true) {
-			OutputView.printMessage(SystemMsg.EXIT_MESSAGE.getMsg());
+			OutputView.printMessage(SystemMsg.GO_TO_PREV_MESSAGE.getMsg());
 			OutputView.printMessage(SystemMsg.INPUT_ID.getMsg());
 			id = InputAccountView.inputStringLine();
 			
