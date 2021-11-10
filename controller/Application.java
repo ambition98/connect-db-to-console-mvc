@@ -27,10 +27,10 @@ public class Application {
 			case CATEGORY:
 				category = CategoryMenu.execute();
 				break;
-			case PRODUCT: //미구현
+			case PRODUCT:
 				ProductMenu.execute(category);
 				break;
-			case PRODUCT_ACT: //미구현
+			case ACT_ABOUT_PRODUCT: //미구현
 				break;
 			}
 		}// while

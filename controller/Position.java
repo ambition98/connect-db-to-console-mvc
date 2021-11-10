@@ -5,19 +5,6 @@ import mall.constant.MenuList;
 public class Position {
 	private static MenuList currentMenu = MenuList.MAIN;
 	
-//	public static void moveFromMain(String menuNumber) {
-//		switch(menuNumber) {
-//		case "1":
-//			currentMenu = MenuList.SIGNIN;
-//			break;
-//		case "2":
-//			currentMenu = MenuList.SIGNUP;
-//			break;
-//		case "3":
-//			System.exit(0);
-//		}
-//	}
-	
 	public static MenuList getCurrentMenu() {
 		return currentMenu;
 	}

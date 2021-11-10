@@ -16,23 +16,16 @@ public class OutputView {
 		int outlineLength = getOutlineLength(Position.getCurrentMenu());
 
 		printOutline(outlineLength);
+		
 		menuList.forEach(menu -> System.out.println(INDENT + "[" + index++ + "] "
 									+ getNameToDTO(menu)));
+		if(Position.getCurrentMenu() != MenuList.MAIN)
+			System.out.println(INDENT + "[" + index++ + "] Go to previous menu");
+		
 		printOutline(outlineLength);
 		printInputConsole();
 		
 		index = 1;
-	}
-
-	private static <T> String getNameToDTO(T menu) {
-		if(menu instanceof String)
-			return (String) menu;
-		else if (menu instanceof CategoryDTO)
-			return ((CategoryDTO) menu).getName();
-		else if (menu instanceof ProductDTO)
-			return ((ProductDTO) menu).getPdName();
-
-		return null;
 	}
 
 	public static void printMessage(String message) {
@@ -57,10 +50,21 @@ public class OutputView {
 			return 25;
 		case PRODUCT:
 			return 60;
-		case PRODUCT_ACT:
+		case ACT_ABOUT_PRODUCT:
 			return 20;
 		default:
 			return 0;
 		}
+	}
+
+	private static <T> String getNameToDTO(T menu) {
+		if(menu instanceof String)
+			return (String) menu;
+		else if (menu instanceof CategoryDTO)
+			return ((CategoryDTO) menu).getName();
+		else if (menu instanceof ProductDTO)
+			return ((ProductDTO) menu).getPdName();
+
+		return null;
 	}
 }

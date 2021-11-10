@@ -9,7 +9,7 @@ import mall.controller.ConnectedUser;
 import mall.controller.Position;
 import mall.model.MallUserDAO;
 import mall.model.MallUserDTO;
-import mall.view.input_view.InputAccountView;
+import mall.view.input_view.InputView;
 import mall.view.input_view.InputMenuView;
 import mall.view.output_view.OutputView;
 
@@ -44,7 +44,7 @@ public class MainMenu {
 		while(true) {
 			OutputView.printMessage(SystemMsg.GO_TO_PREV_MESSAGE.getMsg());
 			OutputView.printMessage(SystemMsg.INPUT_ID.getMsg());
-			String id = InputAccountView.inputStringLine();
+			String id = InputView.inputStringLine();
 			
 			if(id.equals("exit")) {
 				Position.moveToPrevious();
@@ -52,7 +52,7 @@ public class MainMenu {
 			}
 			
 			OutputView.printMessage(SystemMsg.INPUT_PASSWORD.getMsg());
-			String pw = InputAccountView.inputStringLine();
+			String pw = InputView.inputStringLine();
 			
 			dto = MallUserDAO.selectforSignin(id, pw);
 			if(dto == null) {
@@ -72,7 +72,7 @@ public class MainMenu {
 		while(true) {
 			OutputView.printMessage(SystemMsg.GO_TO_PREV_MESSAGE.getMsg());
 			OutputView.printMessage(SystemMsg.INPUT_ID.getMsg());
-			id = InputAccountView.inputStringLine();
+			id = InputView.inputStringLine();
 			
 			if(id.equals("exit")) {
 				Position.moveToPrevious();
@@ -87,11 +87,11 @@ public class MainMenu {
 		}
 		
 		OutputView.printMessage(SystemMsg.INPUT_PASSWORD.getMsg());
-		String pw = InputAccountView.inputStringLine();
+		String pw = InputView.inputStringLine();
 		OutputView.printMessage(SystemMsg.INPUT_PHONE_NUMBER.getMsg());
-		String ph = InputAccountView.inputStringLine();
+		String ph = InputView.inputStringLine();
 		OutputView.printMessage(SystemMsg.INPUT_ADDRESS.getMsg());
-		String address = InputAccountView.inputStringLine();
+		String address = InputView.inputStringLine();
 		
 		int cnt = MallUserDAO.inputNewUser(new MallUserDTO.Builder(id)
 											.userPw(pw)
