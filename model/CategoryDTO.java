@@ -22,6 +22,10 @@ public class CategoryDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "CategoryDTO [no=" + no + ", name=" + name + "]";
+	}
 	
 }

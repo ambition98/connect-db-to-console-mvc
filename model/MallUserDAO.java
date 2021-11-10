@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import mall.util.DBUtil;
+
 public class MallUserDAO {
 	static Connection conn = null;
 	static PreparedStatement pstmt = null;
@@ -91,6 +93,7 @@ public class MallUserDAO {
 			res = pstmt.executeQuery();
 			
 			while(res.next()) {
+				System.out.println("Enter while");
 				dto = new MallUserDTO.Builder(userId)
 						.no(res.getInt("no"))
 						.userPw(res.getString("userpw"))

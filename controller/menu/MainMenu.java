@@ -5,7 +5,7 @@ import java.util.List;
 
 import mall.constant.MenuList;
 import mall.constant.SystemMsg;
-import mall.controller.ConnectedUser;
+import mall.controller.Application;
 import mall.controller.Position;
 import mall.model.MallUserDAO;
 import mall.model.MallUserDTO;
@@ -62,7 +62,7 @@ public class MainMenu {
 			break;
 		}
 		
-		ConnectedUser.currentUser = dto;
+		Application.currentUser = dto;
 		OutputView.printMessage(SystemMsg.SUCCEED_LOGIN.getMsg());
 		Position.setCurrentMenu(MenuList.CATEGORY);
 	}

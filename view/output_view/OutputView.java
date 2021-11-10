@@ -17,10 +17,11 @@ public class OutputView {
 
 		printOutline(outlineLength);
 		
-		menuList.forEach(menu -> System.out.println(INDENT + "[" + index++ + "] "
-									+ getNameToDTO(menu)));
+		menuList.forEach(element -> System.out.println(INDENT + "[" + index++ + "] "
+									+ getNameFromDTO(element)));
+		
 		if(Position.getCurrentMenu() != MenuList.MAIN)
-			System.out.println(INDENT + "[" + index++ + "] Go to previous menu");
+			System.out.println("\n" + INDENT + "[" + index++ + "] Go to previous menu");
 		
 		printOutline(outlineLength);
 		printInputConsole();
@@ -47,23 +48,23 @@ public class OutputView {
 		case MAIN:
 			return 20;
 		case CATEGORY:
-			return 25;
+			return 32;
 		case PRODUCT:
 			return 60;
 		case ACT_ABOUT_PRODUCT:
-			return 20;
+			return 35;
 		default:
 			return 0;
 		}
 	}
 
-	private static <T> String getNameToDTO(T menu) {
-		if(menu instanceof String)
-			return (String) menu;
-		else if (menu instanceof CategoryDTO)
-			return ((CategoryDTO) menu).getName();
-		else if (menu instanceof ProductDTO)
-			return ((ProductDTO) menu).getPdName();
+	private static <T> String getNameFromDTO(T element) {
+		if(element instanceof String)
+			return (String) element;
+		else if (element instanceof CategoryDTO)
+			return ((CategoryDTO) element).getName();
+		else if (element instanceof ProductDTO)
+			return ((ProductDTO) element).getPdName();
 
 		return null;
 	}

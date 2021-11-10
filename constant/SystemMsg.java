@@ -2,21 +2,23 @@ package mall.constant;
 
 public enum SystemMsg {
 	//Nomal Message
-	EXIT_MESSAGE("프로그램을 종료합니다."),
-	GO_TO_PREV_MESSAGE("[\"exit\" 입력하여 뒤로가기]"),
-	COMPLETE_SIGNUP("회원가입이 완료되었습니다."),
-	SUCCEED_LOGIN("로그인에 성공하였습니다."),
+	EXIT_MESSAGE("Exit program\n"),
+	GO_TO_PREV_MESSAGE("Input \"exit\" to previous menu\n"),
+	COMPLETE_SIGNUP("Succeed signup\n"),
+	SUCCEED_LOGIN("Succeed login\n"),
+	ADDED_TO_CART("Product added to your cart\n"),
 	
 	//Input Message
-	INPUT_ID("Id를 입력하세요"),
-	INPUT_PASSWORD("Password를 입력하세요"),
-	INPUT_PHONE_NUMBER("휴대폰 번호를 입력하세요"),
-	INPUT_ADDRESS("주소를 입력하세요"),
+	INPUT_ID("Input Id"),
+	INPUT_PASSWORD("Input Password"),
+	INPUT_PHONE_NUMBER("Input your phone number"),
+	INPUT_ADDRESS("Input your address"),
 	
 	//Error Message
-	ILLEGAL_INPUT("잘못 입력하셨습니다.\n"),
-	DUPLICATED_ID("이미 존재하는 Id 입니다.\n"),
-	WRONG_IDPW("Id 또는 Password가 틀렸습니다.");
+	ILLEGAL_INPUT("You typed wrong number.\n"),
+	DUPLICATED_ID("This Id is already Used\n"),
+	WRONG_IDPW("Worng Id or Password\n"),
+	CRITICAL_ERROR("*Unknown Error*\n");
 	
 	private final String msg;
 	

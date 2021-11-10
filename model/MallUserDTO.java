@@ -12,6 +12,7 @@ public class MallUserDTO {
 	private Timestamp suspensionDate;
 
 	private MallUserDTO(Builder builder) {
+		this.no = builder.no;
 		this.userId = builder.userId;
 		this.userPw = builder.userPw;
 		this.ph = builder.ph;

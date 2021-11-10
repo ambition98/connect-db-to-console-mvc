@@ -1,38 +1,45 @@
 package mall.controller;
 
-import mall.constant.MenuList;
+import mall.controller.menu.ActAboutProductMenu;
 import mall.controller.menu.CategoryMenu;
 import mall.controller.menu.MainMenu;
 import mall.controller.menu.ProductMenu;
 import mall.model.CategoryDTO;
+import mall.model.MallUserDTO;
+import mall.model.ProductDTO;
 
 public class Application {
-
+	public static CategoryDTO selectedCategory = null;
+	public static ProductDTO selectedProduct = null;
+	public static MallUserDTO currentUser = null;
+	
 	public static void main(String[] args) {
-		CategoryDTO category = null;
-		
-		System.out.println(MenuList.MAIN.ordinal());
 		while(true) {
-			System.out.println("current pos: " + Position.getCurrentMenu());
-			if(ConnectedUser.currentUser == null)
-				System.out.println("not logined");
-			else
-				System.out.println("current user: " 
-							+ ConnectedUser.currentUser.getUserId());
+//			printStatus();
 			
 			switch(Position.getCurrentMenu()) {
 			case MAIN:
 				MainMenu.execute();
 				break;
 			case CATEGORY:
-				category = CategoryMenu.execute();
+				CategoryMenu.execute();
 				break;
 			case PRODUCT:
-				ProductMenu.execute(category);
+				ProductMenu.execute();
 				break;
-			case ACT_ABOUT_PRODUCT: //미구현
+			case ACT_ABOUT_PRODUCT:
+				ActAboutProductMenu.execute();
 				break;
 			}
-		}// while
+		}
+	}
+	
+	private static void printStatus() {
+		System.out.println();
+		System.out.println("\tCurrent pos.:\t" + Position.getCurrentMenu());
+		System.out.println("\tCurrent user:\t" + currentUser);
+		System.out.println("\tSelected Cat.:\t"+selectedCategory);
+		System.out.println("\tSelected Pdt.:\t"+selectedProduct);
+		System.out.println();
 	}
 }
