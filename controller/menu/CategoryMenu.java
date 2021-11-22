@@ -20,8 +20,6 @@ public class CategoryMenu {
 		String selectedSubMenu = InputMenuView.selectSubMenu(categoryList);
 		int index = Integer.parseInt(selectedSubMenu);
 		
-		System.out.println("index: " + index);
-		System.out.println("size: " + categoryList.size());
 		if(index == categoryList.size() + 1) {
 			Position.moveToPrevious();
 			return;

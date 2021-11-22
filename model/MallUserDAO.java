@@ -1,5 +1,7 @@
 package mall.model;
 
+import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +15,6 @@ public class MallUserDAO {
 	static ResultSet res = null;
 	
 	public static int inputNewUser(MallUserDTO dto) {
-		System.out.println(dto.toString());
 		int count = 0; // CountUpdateQueryResult
 		try {
 			conn = DBUtil.getConnection();
@@ -62,7 +63,6 @@ public class MallUserDAO {
 						.isManager(res.getString("is_manager"))
 						.suspensionDate(res.getTimestamp("suspension_date"))
 						.build();
-				System.out.println(dto.toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,7 +93,6 @@ public class MallUserDAO {
 			res = pstmt.executeQuery();
 			
 			while(res.next()) {
-				System.out.println("Enter while");
 				dto = new MallUserDTO.Builder(userId)
 						.no(res.getInt("no"))
 						.userPw(res.getString("userpw"))
@@ -102,7 +101,6 @@ public class MallUserDAO {
 						.isManager(res.getString("is_manager"))
 						.suspensionDate(res.getTimestamp("suspension_date"))
 						.build();
-				System.out.println(dto.toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,4 +115,5 @@ public class MallUserDAO {
 		}
 		return dto;
 	}
+	
 }

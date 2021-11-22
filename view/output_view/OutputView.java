@@ -64,7 +64,7 @@ public class OutputView {
 		else if (element instanceof CategoryDTO)
 			return ((CategoryDTO) element).getName();
 		else if (element instanceof ProductDTO)
-			return ((ProductDTO) element).getPdName();
+			return ((ProductDTO) element).getPdName() + " (" + ((ProductDTO) element).getPrice() + ")";
 
 		return null;
 	}

@@ -20,8 +20,6 @@ public class InputMenuView {
 			
 			return input;
 		} catch(IllegalArgumentException e) {
-//			e.printStackTrace();
-//			OutputView.printMessage(SystemMsg.ILLEGAL_INPUT.getMsg());
 			OutputView.printMessage(e.getMessage());
 			return selectSubMenu(dtoList);
 		}
